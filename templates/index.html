@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Inicio - Los Libros del Día{% endblock %}
+{% block content %}
+<section class="container">
+    <div class="page-header"><div><p class="eyebrow">Biblioteca</p><h1>Listado de libros</h1></div><a href="{{ url_for('web.agregar_formulario') }}" class="btn btn-primary">Agregar libro</a></div>
+    <div class="summary-card"><span>Total de libros</span><strong>{{ total_libros }}</strong></div>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Año</th><th>Acciones</th></tr></thead><tbody>
+    {% for libro in libros %}<tr><td>{{ libro.titulo }}</td><td>{{ libro.autor }}</td><td>{{ libro.genero }}</td><td>{{ libro.anio_publicacion }}</td><td class="actions"><a href="{{ url_for('web.editar_formulario', id_libro=libro.id) }}" class="btn btn-secondary">Editar</a><form action="{{ url_for('web.eliminar', id_libro=libro.id) }}" method="POST" class="inline-form"><button type="submit" class="btn btn-danger" data-confirm-delete>Eliminar</button></form></td></tr>
+    {% else %}<tr><td colspan="5" class="empty-state">No hay libros registrados.</td></tr>{% endfor %}
+    </tbody></table></div>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Libros prestados{% endblock %}
+{% block content %}
+<section class="container"><div class="page-header"><div><p class="eyebrow">Préstamos</p><h1>Historial de préstamos</h1></div></div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Libro</th><th>Usuario</th><th>Fecha préstamo</th><th>Fecha devolución</th><th>Estado</th></tr></thead><tbody>
+{% for prestamo in prestamos %}<tr><td>{{ prestamo.libro }}</td><td>{{ prestamo.usuario }}</td><td>{{ prestamo.fecha_prestamo }}</td><td>{{ prestamo.fecha_devolucion or '—' }}</td><td><span class="status-badge {{ 'status-activo' if prestamo.estado == 'activo' else 'status-devuelto' }}">{{ prestamo.estado }}</span></td></tr>{% else %}<tr><td colspan="5" class="empty-state">No hay préstamos registrados.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

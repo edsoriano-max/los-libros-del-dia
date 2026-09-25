@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Búsqueda - Los Libros del Día{% endblock %}
+{% block content %}
+<section class="container"><div class="page-header"><div><p class="eyebrow">Buscar</p><h1>Biblioteca por título, autor o género</h1></div></div>
+<form class="search-form" method="GET" action="{{ url_for('web.buscar') }}"><div class="search-input-wrap"><span class="search-icon">🔎</span><input type="text" name="q" value="{{ termino }}" placeholder="Buscar por título, autor o género"></div><button type="submit" class="btn btn-primary">Buscar</button></form>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Año</th></tr></thead><tbody>
+{% for libro in libros %}<tr><td>{{ libro.titulo }}</td><td>{{ libro.autor }}</td><td>{{ libro.genero }}</td><td>{{ libro.anio_publicacion }}</td></tr>{% else %}<tr><td colspan="4" class="empty-state">No se encontraron resultados.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Libros descargados{% endblock %}
+{% block content %}
+<section class="container"><div class="page-header"><div><p class="eyebrow">Descargas</p><h1>Registro de descargas</h1></div></div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Libro</th><th>Fecha descarga</th><th>Formato</th></tr></thead><tbody>
+{% for descarga in descargas %}<tr><td>{{ descarga.libro }}</td><td>{{ descarga.fecha_descarga }}</td><td>{{ descarga.formato }}</td></tr>{% else %}<tr><td colspan="3" class="empty-state">No hay descargas registradas.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}
